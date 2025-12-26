@@ -6,6 +6,10 @@ import java.util.*;
 public class DocumentNode extends ASTNode {
   private final List<ASTNode> children = new ArrayList<>();
 
+  public List<ASTNode> getChildren() {
+    return children;
+  }
+
   public void add(ASTNode node) {
     children.add(node);
   }

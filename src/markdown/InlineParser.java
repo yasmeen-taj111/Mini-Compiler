@@ -3,20 +3,40 @@ package markdown;
 public class InlineParser {
 
   public static String parse(String text) {
-    if (text.contains("**") && text.split("\\*\\*").length % 2 == 0) {
-      throw new CompilerException("Unmatched ** detected");
+    StringBuilder result = new StringBuilder();
+    int i = 0;
+
+    while (i < text.length()) {
+
+      // BOLD: **text**
+      if (i + 1 < text.length() && text.charAt(i) == '*' && text.charAt(i + 1) == '*') {
+        int end = text.indexOf("**", i + 2);
+        if (end == -1) {
+          throw new CompilerException("Unmatched ** detected");
+        }
+        String boldText = text.substring(i + 2, end);
+        result.append("<strong>").append(boldText).append("</strong>");
+        i = end + 2;
+      }
+
+      // ITALIC: *text*
+      else if (text.charAt(i) == '*') {
+        int end = text.indexOf("*", i + 1);
+        if (end == -1) {
+          throw new CompilerException("Unmatched * detected");
+        }
+        String italicText = text.substring(i + 1, end);
+        result.append("<em>").append(italicText).append("</em>");
+        i = end + 1;
+      }
+
+      // NORMAL TEXT
+      else {
+        result.append(text.charAt(i));
+        i++;
+      }
     }
 
-    if (text.contains("*") && text.split("\\*").length % 2 == 0) {
-      throw new CompilerException("Unmatched * detected");
-    }
-
-    text = text.replaceAll("\\*\\*(.*?)\\*\\*", "<strong>$1</strong>");
-
-    text = text.replaceAll("_(.*?)_", "<em>$1</em>");
-
-    text = text.replaceAll("\\*(.+?)\\*", "<em>$1</em>");
-
-    return text;
+    return result.toString();
   }
 }

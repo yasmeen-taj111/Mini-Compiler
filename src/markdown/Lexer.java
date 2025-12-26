@@ -15,7 +15,15 @@ public class Lexer {
 
     while (pos < input.length()) {
 
-      if (input.startsWith("```", pos)) {
+      if (input.startsWith("<!--", pos)) {
+        int end = input.indexOf("-->", pos);
+        if (end == -1) {
+          throw new RuntimeException("Unclosed comment");
+        }
+        String comment = input.substring(pos, end + 3);
+        tokens.add(new Token(TokenType.COMMENT, comment));
+        pos = end + 3;
+      } else if (input.startsWith("```", pos)) {
         tokens.add(new Token(TokenType.TRIPLE_BACKTICK, "```"));
         pos += 3;
       } else if (input.startsWith("###", pos)) {

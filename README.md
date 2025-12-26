@@ -20,6 +20,7 @@ Examples:
 - `_italic_`
 - `- list item`
 - Code blocks using triple backticks
+- Comments(<!- This is a comment ->)
 
 ---
 
@@ -31,6 +32,7 @@ Examples:
 - Paragraphs
 - Unordered Lists (`- item`)
 - Code Blocks (` `)
+- Comments(<!- This is a comment ->)
 
 ---
 
@@ -64,16 +66,61 @@ MiniMarkdownCompiler/
 │       ├── Token.java
 │       ├── TokenType.java
 │       ├── CompilerException.java
-│       ├── ASTNode.java
 │       └── nodes/
+│           ├── ASTNode.java
 │           ├── DocumentNode.java
 │           ├── HeadingNode.java
 │           ├── ParagraphNode.java
+│           ├── BoldNode.java
+│           ├── ItalicNode.java
 │           ├── ListNode.java
 │           ├── ListItemNode.java
-│           └── CodeBlockNode.java
+│           ├── CodeBlockNode.java
+│           └── CommentNode.java
+│
+├── test/
+│   └── markdown/
+│       ├── LexerTest.java
+│       ├── ParserTest.java
+│       └── HtmlGenerationTest.java
 │
 ├── input.md
 ├── output.html   (auto-generated)
 └── README.md
+
 ```
+
+---
+
+## Testing (JUnit 5)
+
+All unit tests are implemented using the **JUnit 5** framework to ensure the reliability and correctness of the Markdown processing pipeline.
+
+---
+
+## 📊Test Coverage
+
+The test suite provides comprehensive coverage for the following core components:
+
+### 🔹 Lexer
+
+- Validates accurate generation of tokens from raw input strings.
+
+### 🔹 Parser
+
+- Ensures the **Abstract Syntax Tree (AST)** is correctly constructed according to the defined language grammar.
+
+### 🔹 HTML Generation
+
+Verified output for the following Markdown elements:
+
+- **Bold**  
+  `**text**` → `<strong>text</strong>`
+
+- _Italic_  
+  `*text*` → `<em>text</em>`
+
+- **Lists**
+- **Code Blocks**
+
+---

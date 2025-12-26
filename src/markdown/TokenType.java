@@ -7,5 +7,6 @@ public enum TokenType {
   TRIPLE_BACKTICK,
   TEXT,
   NEWLINE,
+  COMMENT,
   EOF
 }

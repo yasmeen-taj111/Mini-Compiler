@@ -44,6 +44,9 @@ public class Parser {
         case TEXT:
           doc.add(new ParagraphNode(consume().value));
           break;
+        case COMMENT:
+          doc.add(new CommentNode(consume().value));
+          break;
 
         default:
           consume();

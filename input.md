@@ -8,6 +8,8 @@ This is **bold** and _italic_ text.
 - Error handling
 - AST based compiler
 
+<!-- mentor note -->
+
 ```
-System.out.println("Hello Google!");
+System.out.println("Hello!");
 ```

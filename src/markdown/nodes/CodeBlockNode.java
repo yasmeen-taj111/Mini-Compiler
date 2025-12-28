@@ -13,4 +13,10 @@ public class CodeBlockNode extends ASTNode {
   public String toHTML() {
     return "<pre><code>" + code + "</code></pre>";
   }
+
+  @Override
+  public void printTree(String indent) {
+    System.out.println(indent + "CodeBlock");
+  }
+
 }

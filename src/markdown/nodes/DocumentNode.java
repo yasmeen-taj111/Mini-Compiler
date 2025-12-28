@@ -22,4 +22,14 @@ public class DocumentNode extends ASTNode {
     }
     return sb.toString();
   }
+
+  @Override
+  public void printTree(String indent) {
+    System.out.println(indent + "Document");
+
+    for (ASTNode child : children) {
+      child.printTree(indent + "  ");
+    }
+  }
+
 }

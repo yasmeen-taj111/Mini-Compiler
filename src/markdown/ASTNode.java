@@ -15,4 +15,8 @@ public abstract class ASTNode {
   public String toHtml() {
     throw new UnsupportedOperationException("Unimplemented method 'toHtml'");
   }
+
+  public void printTree(String indent) {
+    System.out.println(indent + this.getClass().getSimpleName());
+  }
 }

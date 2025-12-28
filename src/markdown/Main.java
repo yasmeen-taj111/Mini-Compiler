@@ -17,5 +17,8 @@ public class Main {
 
     Files.writeString(Path.of("output.html"), html);
     System.out.println("HTML generated successfully");
+
+    System.out.println("=== AST TREE ===");
+    ast.printTree("");
   }
 }

@@ -14,4 +14,10 @@ public class ParagraphNode extends ASTNode {
   public String toHTML() {
     return "<p>" + text + "</p>";
   }
+
+  @Override
+  public void printTree(String indent) {
+    System.out.println(indent + "Paragraph(\"" + text + "\")");
+  }
+
 }

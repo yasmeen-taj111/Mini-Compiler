@@ -14,4 +14,10 @@ public class ListItemNode extends ASTNode {
   public String toHTML() {
     return "<li>" + text + "</li>";
   }
+
+  @Override
+  public void printTree(String indent) {
+    System.out.println(indent + "ListItem(\"" + text + "\")");
+  }
+
 }

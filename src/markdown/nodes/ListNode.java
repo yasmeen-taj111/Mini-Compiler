@@ -9,12 +9,20 @@ public class ListNode extends ASTNode {
     StringBuilder sb = new StringBuilder();
     sb.append("<ul>\n");
 
-    for (ASTNode item : children) {
-      sb.append("  ").append(item.toHTML()).append("\n");
+    for (ASTNode child : children) {
+      sb.append("  ").append(child.toHTML()).append("\n");
     }
 
     sb.append("</ul>\n");
     return sb.toString();
   }
 
+  @Override
+  public void printTree(String indent) {
+    System.out.println(indent + "List");
+
+    for (ASTNode child : children) {
+      child.printTree(indent + "  ");
+    }
+  }
 }

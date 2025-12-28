@@ -14,4 +14,10 @@ public class CommentNode extends ASTNode {
   public String toHTML() {
     return comment;
   }
+
+  @Override
+  public void printTree(String indent) {
+    System.out.println(indent + "Comment(\"" + comment + "\")");
+  }
+
 }

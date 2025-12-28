@@ -16,4 +16,11 @@ public class HeadingNode extends ASTNode {
   public String toHTML() {
     return "<h" + level + ">" + text + "</h" + level + ">";
   }
+
+  @Override
+  public void printTree(String indent) {
+    System.out.println(
+        indent + "Heading(level=" + level + ", text=\"" + text + "\")");
+  }
+
 }

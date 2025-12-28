@@ -42,8 +42,12 @@ public class Parser {
           break;
 
         case TEXT:
-          doc.add(new ParagraphNode(consume().value));
+          String text = consume().value;
+          if (!text.trim().isEmpty()) {
+            doc.add(new ParagraphNode(text));
+          }
           break;
+
         case COMMENT:
           doc.add(new CommentNode(consume().value));
           break;
@@ -71,6 +75,11 @@ public class Parser {
 
     while (peek().type == TokenType.LIST_MARKER) {
       consume(); // '-'
+
+      if (peek().type != TokenType.TEXT || peek().value.trim().isEmpty()) {
+        throw new CompilerException("Empty list item is not allowed");
+      }
+
       list.add(new ListItemNode(consume().value));
 
       if (peek().type == TokenType.NEWLINE) {
